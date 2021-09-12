@@ -385,6 +385,7 @@ contract Controller is IController {
     )
         external
         override
+        notHalted
         onlyHarvester
         onlyStrategy(_strategy)
     {
@@ -414,6 +415,7 @@ contract Controller is IController {
     )
         external
         override
+        notHalted
         onlyStrategy(_strategy)
         onlyVault(_token)
     {
