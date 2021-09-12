@@ -427,6 +427,7 @@ contract Manager is IManager {
         require(allowedTokens[_token], "!allowedTokens");
         require(allowedVaults[_vault], "!allowedVaults");
         require(tokens[_vault].length < MAX_TOKENS, ">tokens");
+        require(vaults[_token] == address(0), "!_token");
         vaults[_token] = _vault;
         tokens[_vault].push(_token);
         emit TokenAdded(_vault, _token);
