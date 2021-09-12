@@ -169,7 +169,7 @@ contract Vault is VaultToken, IVault {
                 _amount = (_amount.mul(totalSupply())).div(_balance);
             }
 
-            _shares = _shares.add(_amount);
+            _shares = _amount;
         }
 
         if (_shares > 0) {
