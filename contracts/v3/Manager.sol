@@ -5,6 +5,7 @@
 pragma solidity 0.6.12;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
+import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 import "./interfaces/IController.sol";
@@ -22,6 +23,7 @@ import "./interfaces/IVault.sol";
  */
 contract Manager is IManager {
     using SafeMath for uint256;
+    using SafeERC20 for IERC20;
 
     uint256 public constant PENDING_STRATEGIST_TIMELOCK = 7 days;
     uint256 public constant MAX_TOKENS = 256;
@@ -449,7 +451,7 @@ contract Manager is IManager {
         notHalted
         onlyStrategist
     {
-        _token.transfer(_to, _amount);
+        _token.safeTransfer(_to, _amount);
     }
 
     /**
