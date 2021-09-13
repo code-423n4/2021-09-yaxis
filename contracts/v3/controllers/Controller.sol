@@ -264,7 +264,7 @@ contract Controller is IController {
             IStrategy(_strategy).withdraw(_diff);
             updateBalance(_vault, _strategy);
             _balance = IStrategy(_strategy).balanceOf();
-            _vaultDetails[_vault].balance = _vaultDetails[_vault].balance.sub(_balance);
+            _vaultDetails[_vault].balance = _vaultDetails[_vault].balance.sub(_diff);
             address _want = IStrategy(_strategy).want();
             _balance = IERC20(_want).balanceOf(address(this));
             if (_convert != address(0)) {
