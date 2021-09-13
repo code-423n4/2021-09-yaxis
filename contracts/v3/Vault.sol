@@ -109,6 +109,29 @@ contract Vault is VaultToken, IVault {
     }
 
     /**
+     * @notice Swaps tokens held within the vault
+     * @param _token0 The token address to swap out
+     * @param _token1 The token address to to
+     * @param _expectedAmount The expected amount of _token1 to receive
+     */
+    function swap(
+        address _token0,
+        address _token1,
+        uint256 _expectedAmount
+    )
+        external
+        override
+        notHalted
+        onlyStrategist
+        returns (uint256 _balance)
+    {
+        IConverter _converter = IConverter(IController(manager.controllers(address(this))).converter(address(this)));
+        _balance = IERC20(_token0).balanceOf(address(this));
+        IERC20(_token0).safeTransfer(address(_converter), _balance);
+        _balance = _converter.convert(_token0, _token1, _balance, _expectedAmount);
+    }
+
+    /**
      * HARVESTER-ONLY FUNCTIONS
      */
 
