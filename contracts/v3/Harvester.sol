@@ -138,7 +138,7 @@ contract Harvester is IHarvester {
         }
 
         if (found) {
-            strategies[_vault].addresses[index] = strategies[_vault].addresses[tail.sub(1)];
+            strategies[_vault].addresses[index] = strategies[_vault].addresses[tail - 1];
             strategies[_vault].addresses.pop();
             strategies[_vault].timeout = _timeout;
             emit StrategyRemoved(_vault, _strategy, _timeout);
