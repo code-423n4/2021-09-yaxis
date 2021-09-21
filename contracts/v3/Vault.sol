@@ -237,7 +237,12 @@ contract Vault is VaultToken, IVault {
         override
         checkToken(_output)
     {
-        uint256 _amount = (balance().mul(_shares)).div(totalSupply());
+        if (totalSupply() > 0) {
+            uint256 _amount = (balance().mul(_shares)).div(totalSupply());
+        }
+        else {
+            uint256 _amount = 0;
+        }
         _burn(msg.sender, _shares);
 
         uint256 _withdrawalProtectionFee = manager.withdrawalProtectionFee();
