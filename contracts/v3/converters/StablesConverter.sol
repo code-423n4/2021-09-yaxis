@@ -75,6 +75,7 @@ contract StablesConverter is IConverter {
         external
         onlyStrategist
     {
+        _token.safeApprove(_spender, 0);
         _token.safeApprove(_spender, _amount);
     }
 
