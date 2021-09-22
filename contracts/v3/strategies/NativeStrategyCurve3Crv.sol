@@ -120,9 +120,7 @@ contract NativeStrategyCurve3Crv is BaseStrategy {
             _swapTokens(weth, _stableCoin, _remainingWeth, 1);
             _addLiquidity();
 
-            if (balanceOfWant() > 0) {
-                _deposit();
-            }
+            _deposit();
         }
     }
 
