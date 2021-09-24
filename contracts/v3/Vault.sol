@@ -214,7 +214,6 @@ contract Vault is VaultToken, IVault {
     )
         external
         override
-        notHalted
         returns (uint256 _shares)
     {
         require(_tokens.length == _amounts.length, "!length");
