@@ -383,22 +383,12 @@ contract Vault is VaultToken, IVault {
         return _amount;
     }
 
-    function _checkToken(
-        address _token
-    )
-        private
-        view
-        returns (bool)
-    {
-        return manager.allowedTokens(_token) && manager.vaults(_token) == address(this);
-    }
-
     /**
      * MODIFIERS
      */
 
     modifier checkToken(address _token) {
-        require(_checkToken(_token), "!_token");
+        require(manager.allowedTokens(_token) && manager.vaults(_token) == address(this), "!_token");
         _;
     }
 
