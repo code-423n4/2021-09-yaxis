@@ -32,6 +32,7 @@ contract VaultHelper {
     )
         external
     {
+        require (_amount > 0);
         IERC20(_token).safeTransferFrom(msg.sender, address(this), _amount);
         IERC20(_token).safeApprove(_vault, 0);
         IERC20(_token).safeApprove(_vault, _amount);
@@ -61,6 +62,7 @@ contract VaultHelper {
     )
         external
     {
+        require (_amount > 0);
         for (uint8 i = 0; i < _amounts.length; i++) {
             IERC20(_tokens[i]).safeTransferFrom(msg.sender, address(this), _amounts[i]);
             IERC20(_tokens[i]).safeApprove(_vault, 0);
@@ -85,6 +87,7 @@ contract VaultHelper {
     )
         external
     {
+        require (_amount > 0);
         address _gauge = IVault(_vault).gauge();
         if (_gauge != address(0)) {
             IERC20(_gauge).safeTransferFrom(msg.sender, address(this), _amount);
