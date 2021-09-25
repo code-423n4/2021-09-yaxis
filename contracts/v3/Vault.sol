@@ -256,7 +256,7 @@ contract Vault is VaultToken, IVault {
             uint256 _after = IERC20(_output).balanceOf(address(this));
             uint256 _diff = _after.sub(_balance);
             if (_diff < _toWithdraw) {
-                _amount = _balance.add(_diff);
+                _amount = _after;
             }
         }
 
