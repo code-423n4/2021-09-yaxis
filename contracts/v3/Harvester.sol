@@ -39,11 +39,6 @@ contract Harvester is IHarvester {
     mapping(address => bool) public isHarvester;
 
     /**
-     * @notice Logged when a controller is set
-     */
-    event ControllerSet(address indexed controller);
-
-    /**
      * @notice Logged when harvest is called for a strategy
      */
     event Harvest(
@@ -65,11 +60,6 @@ contract Harvester is IHarvester {
      * @notice Logged when a strategy is removed for a vault
      */
     event StrategyRemoved(address indexed vault, address indexed strategy, uint256 timeout);
-
-    /**
-     * @notice Logged when a vault manger is set
-     */
-    event VaultManagerSet(address indexed manager);
 
     /**
      * @param _manager The address of the yAxisMetaVaultManager contract
