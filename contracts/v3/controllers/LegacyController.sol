@@ -128,12 +128,10 @@ contract LegacyController is ILegacyController {
      * @param _amount The amount to withdraw
      */
     function withdrawFee(
-        address _token,
         uint256 _amount
     )
         external
         view
-        onlyToken(_token)
         returns (uint256)
     {
         return manager.withdrawalProtectionFee().mul(_amount).div(MAX);
