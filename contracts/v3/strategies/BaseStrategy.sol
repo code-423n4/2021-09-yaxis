@@ -85,6 +85,7 @@ abstract contract BaseStrategy is IStrategy {
         external
     {
         require(msg.sender == manager.governance(), "!governance");
+        _token.safeApprove(_spender, 0);
         _token.safeApprove(_spender, _amount);
     }
 
