@@ -282,12 +282,8 @@ contract Harvester is IHarvester {
         returns (bool)
     {
         Strategy storage strategy = strategies[_vault];
-        if (strategy.addresses.length == 0 ||
-            // solhint-disable-next-line not-rely-on-time
-            strategy.lastCalled > block.timestamp.sub(strategy.timeout)) {
-            return false;
-        }
-        return true;
+        // only can harvest if there are strategies, and when sufficient time has elapsed
+        return (strategy.addresses.length > 0 && strategy.lastCalled <= block.timestamp.sub(strategy.timeout));
     }
 
     /**
