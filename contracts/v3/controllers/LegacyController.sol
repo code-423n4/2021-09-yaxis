@@ -155,6 +155,7 @@ contract LegacyController is ILegacyController {
         // happy path exits without calling back to the vault
         if (_balance >= _amount) {
             token.safeTransfer(metavault, _amount);
+            emit Withdraw(_amount);
         } else {
             uint256 _toWithdraw = _amount.sub(_balance);
             // convert to vault shares
@@ -168,9 +169,9 @@ contract LegacyController is ILegacyController {
             IERC20(_tokens[0]).safeTransfer(address(converter), _balance);
             // TODO: calculate expected
             converter.convert(_tokens[0], address(token), _balance, 1);
+            emit Withdraw(token.balanceOf(address(this)));
             token.safeTransfer(metavault, token.balanceOf(address(this)));
         }
-        emit Withdraw(_amount);
     }
 
     /**
