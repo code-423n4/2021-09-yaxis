@@ -41,11 +41,6 @@ contract Controller is IController {
     mapping(address => address) internal _vaultStrategies;
 
     /**
-     * @notice Logged when earn is called for a strategy
-     */
-    event Earn(address indexed token, address indexed strategy);
-
-    /**
      * @notice Logged when harvest is called for a strategy
      */
     event Harvest(address indexed strategy);
@@ -434,7 +429,6 @@ contract Controller is IController {
         // call the strategy deposit function
         IStrategy(_strategy).deposit();
         updateBalance(msg.sender, _strategy);
-        emit Earn(_token, _strategy);
     }
 
     /**
