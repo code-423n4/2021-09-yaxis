@@ -366,7 +366,7 @@ contract Controller is IController {
         }
         uint256 _balance = _vaultDetails[_vault].balance;
         if (_balance >= _amount) {
-            _vaultDetails[_vault].balance = _vaultDetails[_vault].balance.sub(_amount);
+            _vaultDetails[_vault].balance = _balance.sub(_amount);
         } else {
             _vaultDetails[_vault].balance = 0;
         }
