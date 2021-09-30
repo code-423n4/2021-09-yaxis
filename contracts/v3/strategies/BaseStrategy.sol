@@ -305,8 +305,8 @@ abstract contract BaseStrategy is IStrategy {
             _expected,
             path,
             address(this),
-            // solhint-disable-next-line not-rely-on-time
-            block.timestamp.add(1800)
+            // The deadline is a hardcoded value that is far in the future.
+            1e10
         );
     }
 
