@@ -51,11 +51,6 @@ contract Controller is IController {
     event Harvest(address indexed strategy);
 
     /**
-     * @notice Logged when insurance is claimed for a vault
-     */
-    event InsuranceClaimed(address indexed vault);
-
-    /**
      * @notice Logged when a strategy is added for a vault
      */
     event StrategyAdded(address indexed vault, address indexed strategy, uint256 cap);
