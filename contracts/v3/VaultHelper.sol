@@ -63,11 +63,15 @@ contract VaultHelper {
     {
         require(_tokens.length == _amounts.length, "!length");
         
+        uint256 totalAmount = 0;
         for (uint8 i = 0; i < _amounts.length; i++) {
+            totalAmount += _amounts[i];
             IERC20(_tokens[i]).safeTransferFrom(msg.sender, address(this), _amounts[i]);
             IERC20(_tokens[i]).safeApprove(_vault, 0);
             IERC20(_tokens[i]).safeApprove(_vault, _amounts[i]);
         }
+        require(totalAmount > 0);
+        
         uint256 _shares = IVault(_vault).depositMultiple(_tokens, _amounts);
         address _gauge = IVault(_vault).gauge();
         if (_gauge != address(0)) {
