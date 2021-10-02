@@ -90,15 +90,15 @@ contract NativeStrategyCurve3Crv is BaseStrategy {
         uint usdcBalance = stableSwap3Pool.balances(1).mul(10**18).div(10**(IERC20(usdc).decimals()));
         uint usdtBalance = stableSwap3Pool.balances(2).mul(10**12);
 
-        if (daiBalance < usdcBalance && daiBalance < usdtBalance) {
+        if (daiBalance <= usdcBalance && daiBalance <= usdtBalance) {
             return (dai, 0);
         }
 
-        if (usdcBalance < daiBalance && usdcBalance < usdtBalance) {
+        if (usdcBalance <= daiBalance && usdcBalance <= usdtBalance) {
             return (usdc, 1);
         }
 
-        if (usdtBalance < daiBalance && usdtBalance < usdcBalance) {
+        if (usdtBalance <= daiBalance && usdtBalance <= usdcBalance) {
             return (usdt, 2);
         }
 
