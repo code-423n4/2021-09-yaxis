@@ -85,20 +85,20 @@ contract NativeStrategyCurve3Crv is BaseStrategy {
         view
         returns (address, uint256)
     {
-        uint256[] memory balances = new uint256[](3);
-        balances[0] = stableSwap3Pool.balances(0); // DAI
-        balances[1] = stableSwap3Pool.balances(1).mul(10**18).div(10**(IERC20(usdc).decimals())); // USDC - Supports a change up to the 18 decimal standard
-        balances[2] = stableSwap3Pool.balances(2).mul(10**12); // USDT
+        uint daiBalance = stableSwap3Pool.balances(0);
+        // USDC - Supports a change up to the 18 decimal standard
+        uint usdcBalance = stableSwap3Pool.balances(1).mul(10**18).div(10**(IERC20(usdc).decimals()));
+        uint usdtBalance = stableSwap3Pool.balances(2).mul(10**12);
 
-        if (balances[0] < balances[1] && balances[0] < balances[2]) { // DAI
+        if (daiBalance < usdcBalance && daiBalance < usdtBalance) {
             return (dai, 0);
         }
 
-        if (balances[1] < balances[0] && balances[1] < balances[2]) { // USDC
+        if (usdcBalance < daiBalance && usdcBalance < usdtBalance) {
             return (usdc, 1);
         }
 
-        if (balances[2] < balances[0] && balances[2] < balances[1]) { // USDT
+        if (usdtBalance < daiBalance && usdtBalance < usdcBalance) {
             return (usdt, 2);
         }
 
