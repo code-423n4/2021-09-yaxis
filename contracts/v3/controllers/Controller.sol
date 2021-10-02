@@ -222,8 +222,8 @@ contract Controller is IController {
         onlyStrategist
     {
         require(manager.allowedVaults(_vault), "!_vault");
-        require(manager.allowedStrategies(_strategy1), "!_strategy1");
-        require(manager.allowedStrategies(_strategy2), "!_strategy2");
+        require(_vaultStrategies[_strategy1] == _vault, "!_strategy1");
+        require(_vaultStrategies[_strategy2] == _vault, "!_strategy2");
         VaultDetail storage vaultDetail = _vaultDetails[_vault];
         // get the indexes of the strategies
         uint256 index1 = vaultDetail.index[_strategy1];
