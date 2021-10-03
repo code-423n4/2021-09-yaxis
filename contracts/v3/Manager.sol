@@ -30,6 +30,8 @@ contract Manager is IManager {
 
     address public immutable override yaxis;
 
+    bool public override halted;
+
     address public override governance;
     address public override harvester;
     address public override insurancePool;
@@ -46,7 +48,6 @@ contract Manager is IManager {
     uint256 public override treasuryFee;
     uint256 public override withdrawalProtectionFee;
 
-    bool public override halted;
 
     uint256 private setPendingStrategistTime;
 
