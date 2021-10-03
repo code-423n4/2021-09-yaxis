@@ -5,6 +5,8 @@ pragma solidity 0.6.12;
 import "../../interfaces/Gauge.sol";
 import "../../interfaces/Balancer.sol";
 
+import "../interfaces/ExtendedIERC20.sol";
+
 import "./BaseStrategy.sol";
 
 contract NativeStrategyCurve3Crv is BaseStrategy {
@@ -87,7 +89,7 @@ contract NativeStrategyCurve3Crv is BaseStrategy {
     {
         uint256[] memory balances = new uint256[](3);
         balances[0] = stableSwap3Pool.balances(0); // DAI
-        balances[1] = stableSwap3Pool.balances(1).mul(10**18).div(10**(IERC20(usdc).decimals())); // USDC - Supports a change up to the 18 decimal standard
+        balances[1] = stableSwap3Pool.balances(1).mul(10**18).div(10**(ExtendedIERC20(usdc).decimals())); // USDC - Supports a change up to the 18 decimal standard
         balances[2] = stableSwap3Pool.balances(2).mul(10**12); // USDT
 
         if (balances[0] < balances[1] && balances[0] < balances[2]) { // DAI
