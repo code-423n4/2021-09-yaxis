@@ -515,7 +515,7 @@ contract Manager is IManager {
     function setHalted()
         external
         notHalted
-        onlyStrategist
+        onlyGovernance
     {
         halted = true;
         emit Halted();
