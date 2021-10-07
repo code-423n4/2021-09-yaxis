@@ -99,6 +99,7 @@ contract Controller is IController {
         onlyStrategist
         onlyStrategy(_strategy)
     {
+        require(manager.allowedVaults(_vault), "!_vault");
         require(_vaultDetails[_vault].converter != address(0), "!converter");
         // checking if strategy is already added
         require(_vaultStrategies[_strategy] == address(0), "Strategy is already added"); 
@@ -170,6 +171,7 @@ contract Controller is IController {
         notHalted
         onlyStrategist
     {
+        require(manager.allowedVaults(_vault), "!_vault");
         VaultDetail storage vaultDetail = _vaultDetails[_vault];
         // get the index of the strategy to remove
         uint256 index = vaultDetail.index[_strategy];
