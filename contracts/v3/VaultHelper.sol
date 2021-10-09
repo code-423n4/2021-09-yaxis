@@ -32,6 +32,7 @@ contract VaultHelper {
     )
         external
     {
+        require(_amount > 0, "!_amount");
         IERC20(_token).safeTransferFrom(msg.sender, address(this), _amount);
         IERC20(_token).safeApprove(_vault, 0);
         IERC20(_token).safeApprove(_vault, _amount);
