@@ -289,8 +289,8 @@ contract Harvester is IHarvester {
     {
         ISwap _router = IStrategy(_strategy).router();
         address[] memory _path;
-        _path[0] = IStrategy(_strategy).want();
-        _path[1] = IStrategy(_strategy).weth();
+        _path[0] = IStrategy(_strategy).weth();
+        _path[1] = IStrategy(_strategy).want();
         uint256[] memory _amounts = _router.getAmountsOut(
             IStrategy(_strategy).balanceOfPool(),
             _path
