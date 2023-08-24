@@ -1,6 +1,6 @@
 # yAxis contest details
-- $28,500 USDC (+ $28,500 in tokens) main award pot
-- $1,500 USDC (+ $1,500 in tokens) gas optimization award pot
+- &#36;28,500 USDC (+ &#36;28,500 in tokens) main award pot
+- &#36;1,500 USDC (+ &#36;1,500 in tokens) gas optimization award pot
 - Join [C4 Discord](https://discord.gg/EY5dvm3evD) to register
 - Submit findings [using the C4 form](https://code423n4.com/2021-09-yAxis-contest/submit)
 - [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
